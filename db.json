@@ -1,0 +1,44 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Asus",
+      "price": 400,
+      "quantity": 200,
+      "selected": true,
+      "available": true
+    },
+    {
+      "id": 2,
+      "name": "Printer",
+      "price": 3300,
+      "quantity": 100,
+      "selected": true,
+      "available": true
+    },
+    {
+      "id": 3,
+      "name": "Smartphone",
+      "price": 1200,
+      "quantity": 600,
+      "selected": true,
+      "available": true
+    },
+    {
+      "name": "OnePlus",
+      "price": 58,
+      "quantity": 185,
+      "selected": true,
+      "available": true,
+      "id": 4
+    },
+    {
+      "name": "Samsung",
+      "price": 580,
+      "quantity": 1857,
+      "selected": true,
+      "available": true,
+      "id": 5
+    }
+  ]
+}
