@@ -11,7 +11,7 @@
     {
       "id": 2,
       "name": "Printer",
-      "price": 3300,
+      "price": 300,
       "quantity": 100,
       "selected": true,
       "available": true
@@ -39,6 +39,38 @@
       "selected": true,
       "available": true,
       "id": 5
+    },
+    {
+      "name": "Iphone 13",
+      "price": 1400,
+      "quantity": 100,
+      "selected": true,
+      "available": true,
+      "id": 6
+    },
+    {
+      "name": "SamsungS21",
+      "price": 2000,
+      "quantity": 150,
+      "selected": true,
+      "available": true,
+      "id": 7
+    },
+    {
+      "name": "Techno c",
+      "price": 500,
+      "quantity": 1,
+      "selected": false,
+      "available": false,
+      "id": 8
+    },
+    {
+      "name": "Kounfanbo",
+      "price": 500,
+      "quantity": 15,
+      "selected": false,
+      "available": false,
+      "id": 9
     }
   ]
 }

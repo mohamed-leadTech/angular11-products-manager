@@ -1,6 +1,9 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { EventDriverService } from 'src/app/state/event-driven.service';
-import { ActionEvent, ProductActionType } from 'src/app/state/products.state';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { getAllProducts, getAvailableProducts, getSelectedProducts } from 'src/app/ngrx/products.actions';
+import { AppProductStaste } from 'src/app/ngrx/products.reducers';
 
 @Component({
   selector: 'app-products-nav-bar',
@@ -9,36 +12,26 @@ import { ActionEvent, ProductActionType } from 'src/app/state/products.state';
 })
 export class ProductsNavBarComponent implements OnInit {
 
-  //@Output() productEventEmetter: EventEmitter<ActionEvent> = new EventEmitter();
+  productsState$?: Observable<AppProductStaste>;
 
-  constructor(private eventDriverService: EventDriverService) { }
+  constructor(private store: Store<AppProductStaste>, private router:Router) { }
 
   ngOnInit(): void {
+    this.onGetAllProducts();
   }
   onGetAllProducts() {
-    //this.productEventEmetter.emit({type: ProductActionType.GET_ALL_PRODUCTS});
-    this.eventDriverService.publishEvent({type: ProductActionType.GET_ALL_PRODUCTS})
-
+    this.store.dispatch(getAllProducts())
   }
   onGetSelectedProducts(){
-    //this.productEventEmetter.emit({type: ProductActionType.GET_SELECTED_PRODUCTS});
-    this.eventDriverService.publishEvent({type: ProductActionType.GET_SELECTED_PRODUCTS});
-
+    this.store.dispatch(getSelectedProducts())
   }
   onGetAvailableProducts(){
-    //this.productEventEmetter.emit({type: ProductActionType.GET_AVAILABLE_PRODUCTS});
-    this.eventDriverService.publishEvent({type: ProductActionType.GET_AVAILABLE_PRODUCTS});
-
-
+    this.store.dispatch(getAvailableProducts())
   }
   onAddNewProduct(){
-    //this.productEventEmetter.emit({type: ProductActionType.ADD_PRODUCT});
-    this.eventDriverService.publishEvent({type: ProductActionType.ADD_PRODUCT});
-
-  }
+    this.router.navigateByUrl('/add-product');
+  } 
   onSearch(value: any){
-    //this.productEventEmetter.emit({type: ProductActionType.SEARCH_PRODUCTS, payload: value});
-    this.eventDriverService.publishEvent({type: ProductActionType.SEARCH_PRODUCTS, payload: value});
-
+    this.store.dispatch(getAllProducts())
   }
 }

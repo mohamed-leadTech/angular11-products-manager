@@ -1,28 +1,27 @@
 <div class="container">
-    <ng-container *ngIf="products$ |async as products" [ngSwitch]="products.dataState">
-       <ng-container *ngSwitchCase="DataStateEnum.LOADING">Loading....</ng-container>
-       <ng-container *ngSwitchCase="DataStateEnum.ERROR">
+    <ng-container *ngIf="productsState$ |async as productsState" [ngSwitch]="productsState.dataState">
+       <ng-container *ngSwitchCase="ProductsStateEnum.LOADING">Loading....</ng-container>
+       <ng-container *ngSwitchCase="ProductsStateEnum.ERROR">
            <div class="col-12 text-center">
-               <div class="alert-danger">{{products.errorMessage}}</div>
+               <div class="alert-danger">{{productsState.errorMessage}}</div>
            </div>
        </ng-container>
-       
-       <ng-container>
-   <div class="container" *ngIf="products.data">
-       <table class="table">
-           <tr>
-               <th>ID</th>
-               <th>Name</th>
-               <th>Price</th>
-               <th>Quantity</th>
-               <th>Selected</th>
-               <th>Available</th>
-           </tr>
-           <app-product-item [product]="p" *ngFor="let p of products.data" style="display: contents;"></app-product-item>
-       </table>
-       </div>
+       <ng-container *ngSwitchCase="ProductsStateEnum.LOADED">
+            <div class="container" *ngIf="productsState.products">
+                 <table class="table">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Selected</th>
+                        <th>Available</th>
+                    </tr>
+                <app-product-item [product]="p" *ngFor="let p of productsState.products" style="display: contents;"></app-product-item>
+                </table>
+            </div>
+        </ng-container>
    </ng-container>
-   </ng-container>
-   </div>
+</div>
    
    

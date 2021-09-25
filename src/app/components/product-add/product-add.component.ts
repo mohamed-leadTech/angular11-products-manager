@@ -1,6 +1,8 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { addNewProduct } from 'src/app/ngrx/products.actions';
+import { AppProductStaste } from 'src/app/ngrx/products.reducers';
 import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
@@ -13,7 +15,7 @@ export class ProductAddComponent implements OnInit {
   productFormGroup!: FormGroup;
   submitted: boolean = false;
 
-  constructor(private fb: FormBuilder, private productService: ProductsService) { }
+  constructor(private fb: FormBuilder, private productService: ProductsService, private strore: Store<AppProductStaste>) { }
 
   ngOnInit(): void {
     this.productFormGroup = this.fb.group({
@@ -27,10 +29,7 @@ export class ProductAddComponent implements OnInit {
   onSaveProduct() {
     this.submitted = !this.submitted
     if(this.productFormGroup.invalid) return;
-    this.productService.save(this.productFormGroup.value)
-    .subscribe(data =>{
-      alert(JSON.stringify(data));
-    })
+    this.strore.dispatch(addNewProduct(this.productFormGroup.value));
 
   }
 
